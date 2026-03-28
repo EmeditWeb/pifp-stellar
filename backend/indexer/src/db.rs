@@ -264,6 +264,7 @@ pub async fn log_webhook_delivery_attempt(
 }
 
 /// Count delivery attempts for a webhook. Useful for tests and diagnostics.
+#[cfg(test)]
 pub async fn count_webhook_deliveries(pool: &SqlitePool, webhook_id: i64) -> Result<i64> {
     let row: (i64,) =
         sqlx::query_as("SELECT COUNT(*) FROM webhook_deliveries WHERE webhook_id = ?1")
